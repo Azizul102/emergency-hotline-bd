@@ -13,12 +13,17 @@ document.querySelectorAll('.hurt-btn').forEach(function(btn){
     });
 });
 
-// Copy functionality
+  // Copy functionality
+        document.querySelectorAll('.copy-btn').forEach(function(btn){
+            btn.addEventListener('click', function() {
+                const phoneNumber = this.closest('.bg-white').querySelector('.phone-number').textContent.trim();
+                navigator.clipboard.writeText(phoneNumber);
 
-document.querySelectorAll('.copy-btn').forEach(function(btn){
-    btn.addEventListener('click', function() {
-        const phoneNumber = this.closest('.bg-white').querySelector('.phone-number').textContent.trim();
-        navigator.clipboard.writeText(phoneNumber);
+                // Visual feedback
+                const originalHtml = this.innerHTML;
+                this.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                this.classList.remove('bg-gray-200', 'hover:bg-black');
+                this.classList.add('bg-green-500', 'text-white');
 
         // Increment copy counter
         let copyUpdation = getNavValue('copy-update');
